@@ -1,0 +1,159 @@
+debug: true
+logging:
+  file: earyant.log
+  path: log/
+#  level:
+#    *: debug
+#localhost
+#MySQL
+server:
+  port: 8010
+spring:
+  output:
+    ansi:
+      enabled: DETECT
+  ########################################################
+  ###FREEMARKER(FreeMarkerAutoConfiguration)
+  ########################################################
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    #prefix=
+    #request-context-attribute=
+    #settings.*=
+    #suffix=.ftl
+    #template-loader-path=classpath:/templates/#comma-separated list
+########################################################
+###mail setting
+########################################################
+# 设置邮箱主机
+  mail:
+      host: smtp.qq.com
+  # 设置用户名
+      username: 23769262
+  # 设置密码
+      password: ",,./06lirx,,./"
+  # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
+  #如果设置false，可以不设置用户名和密码，当然也得看你的对接的平台是否支持无密码进行访问的。
+      properties:
+        mail:
+          smtp:
+            auth: true
+  # STARTTLS[1]  是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信。
+            starttls:
+              enable: true
+              required: true
+
+  thymeleaf:
+    cache: false
+  devtools:
+    restart:
+      additional-exclude: static/**,public/**
+  jpa:
+    open-in-view: true
+    database:
+      MYSQL
+    show-sql: false
+    hibernate.naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+            ddl-auto: update
+  datasource:
+    primary:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://127.0.0.1:3306/idc?useUnicode=true&amp;allowMultiQueries=true&&createDatabaseIfNotExist=true&useSSL=false
+      username: root
+      password: 23769263
+      driver-class-name: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROMDUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      useGlobalDataSourceStat: true
+    secondary:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://127.0.0.1:3306/idc?useUnicode=true&amp;allowMultiQueries=true&&createDatabaseIfNotExist=true&useSSL=false
+      username: root
+      password: 23769263
+      driver-class-name: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROMDUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      useGlobalDataSourceStat: true
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+  application:
+    name: earyant   #在springcloud中显示的实例名
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    # pool settings ...
+    pool:
+      max-idle: 8
+      min-idle: 0
+      max-active: 8
+      max-wait: -1
+  data:
+    mongodb:
+      primary:
+        authentication-database: idc # Authentication database name.
+        database: idc # Database name.
+  #spring.data.mongodb.field-naming-strategy= # Fully qualified name of the FieldNamingStrategy to use.
+  #spring.data.mongodb.grid-fs-database= # GridFS database name.
+        host: localhost # Mongo server host.
+  #      password:  # Login password of the mongo server.
+        port: 27017 # Mongo server port.
+        repositories:
+          enabled: true # Enable Mongo repositories.
+      secondary:
+        authentication-database: idc # Authentication database name.
+        database: idc # Database name.
+        host: localhost # Mongo server host.
+        port: 27017 # Mongo server port.
+        repositories:
+          enabled: true
+  aop:
+    proxy-target-class: true # Enable Mongo repositories.
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+
+info:
+  app:
+    name: earyant
+    info.app.version: 1.0.0
+    artifactId: @project.artifactId@
+    version: @project.version@
